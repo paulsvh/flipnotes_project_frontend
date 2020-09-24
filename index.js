@@ -41,11 +41,11 @@ function postCard(question, answer, deck_id){
     })
     .then(resp => resp.json())
     .then(card => {
-        const cardData = card.data
+        const cardData = card.data.attributes
         const cardMarkup = `
             <div data-id=${card.id}>
-            <h3>${cardData.attributes.question}</h3>
-            <h3>${cardData.attributes.answer}</h3>
+            <h3>${cardData.question}</h3>
+            <h3>${cardData.answer}</h3>
             </div>
             <br><br>
             `;
