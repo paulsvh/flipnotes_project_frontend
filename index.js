@@ -1,4 +1,4 @@
-const cardsIndex = "http://127.0.0.1:3000/api/cards"
+const cardsEndPoint = "http://127.0.0.1:3000/api/cards"
 
 document.addEventListener('DOMContentLoaded', () => {
    getCards()
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function getCards(){
-    fetch(cardsIndex)
+    fetch(cardsEndPoint)
     .then(resp => resp.json())
     .then(cards => {
         cards.data.forEach(card => {
@@ -33,5 +33,23 @@ function createFormHandler(e){
 }
 
 function postCard(question, answer, deck_id){
-    console.log(question, answer, deck_id)
+    const bodyData = {question, answer, deck_id}
+    fetch(cardsEndPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(resp => resp.json())
+    .then(card => {
+        const cardData = card.data
+        const cardMarkup = `
+            <div data-id=${card.id}>
+            <h3>${cardData.attributes.question}</h3>
+            <h3>${cardData.attributes.answer}</h3>
+            </div>
+            <br><br>
+            `;
+
+            document.querySelector('#card-container').innerHTML += cardMarkup
+    })
 }
