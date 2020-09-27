@@ -46,8 +46,12 @@ function render(card) {
             <h5>ANSWER:</h5>
             <h3>${card.attributes.answer}</h3>
             </div>
-            <br><br>
             `;
+            const cardDiv = document.querySelector('#card-container');
 
-            document.querySelector('#card-container').innerHTML += cardMarkup
+            //document.querySelector('#card-container').innerHTML += cardMarkup
+            const newCard = document.createElement('div')
+            newCard.innerHTML += cardMarkup;
+            newCard.style.cssText = 'border:1px solid black; width: 25%;'
+            cardDiv.appendChild(newCard);
 }
