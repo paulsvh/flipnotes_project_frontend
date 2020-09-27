@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Link to Back-End Repo](https://github.com/paulsvh/flipnotes_project_cakend "FlipNotes Back-End")
 
-Things you may want to cover:
+## USAGE
 
-* Ruby version
+* Fork and clone both the back-end and front-end repositories
 
-* System dependencies
+* Open the back-end repository and run "bundle install"
 
-* Configuration
+* In the back-end, run rails db:dcms to drop/create/migrate/seed the database
 
-* Database creation
+* In the back-end, run rails s to start up server
 
-* Database initialization
+* Open the front-end repository and open "index.html" in your favorite browser (chrome recommended)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Use the form to create a new flash card and assign it to a specific deck
