@@ -11,7 +11,8 @@ function getCards(){
     .then(resp => resp.json())
     .then(cards => {
         cards.data.forEach(card => {
-            render(card)
+            const newCard = new Card(card, card.attributes)
+            document.querySelector('#card-container').innerHTML += newCard.renderCard()
         })
         
     })
@@ -34,24 +35,7 @@ function postCard(question, answer, deck_id){
     })
     .then(resp => resp.json())
     .then(card => {
-        render(card.data)
+        const newCard = new Card(card.data, card.data.attributes)
+        document.querySelector('#card-container').innerHTML += newCard.renderCard()
     })
-}
-
-function render(card) {
-    const cardMarkup = `
-            <div data-id=${card.id}>
-            <h5>QUESTION:</h5>
-            <h3>${card.attributes.question}</h3>
-            <h5>ANSWER:</h5>
-            <h3>${card.attributes.answer}</h3>
-            </div>
-            `;
-            const cardDiv = document.querySelector('#card-container');
-
-            //document.querySelector('#card-container').innerHTML += cardMarkup
-            const newCard = document.createElement('div')
-            newCard.innerHTML += cardMarkup;
-            newCard.style.cssText = 'border:1px solid black; width: 25%;'
-            cardDiv.appendChild(newCard);
 }
