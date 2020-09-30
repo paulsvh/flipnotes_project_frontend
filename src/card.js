@@ -10,23 +10,31 @@ class Card {
 
     renderCard() {
         return `
-            <div data-id=${this.id}>
-                <h5>QUESTION:</h5>
-                <h3>${this.question}</h3>
-                <h5>ANSWER:</h5>
-                <h3>${this.answer}</h3>
+            <div class="single-card" id=${this.id}>
+            <h3 class="card-q">${this.question}</h3>
+            <h3 class="card-a" hidden>${this.answer}</h3>
+            <button class="flip-button" id=${this.id} type="button">FLIP</button>
             </div>
             <br><br>
                 `;
-                //const cardDiv = document.querySelector('#card-container');
-    
-                //document.querySelector('#card-container').innerHTML += cardMarkup
-                //const newCard = document.createElement('div')
-                //newCard.innerHTML += cardMarkup;
-                //newCard.style.cssText = 'border:1px solid black; width: 25%;'
-                //cardDiv.appendChild(newCard);
     }
 
+    addFlipButton() {
+        const thisCard = document.getElementById(this.id)
+        const flipButton = thisCard.getElementsByClassName("flip-button")[0]
+        const thisQuestion = thisCard.querySelector('.card-q')
+        const thisAnswer = thisCard.querySelector('.card-a')
+            flipButton.addEventListener("click", function(){
+                if (thisAnswer.hidden === true){
+                    thisAnswer.hidden = false;
+                    thisQuestion.hidden = true;
+                }
+                else if (thisQuestion.hidden === true){
+                    thisQuestion.hidden = false
+                    thisAnswer.hidden = true
+                }
+        })
+    }
 }
 
 Card.all = [];

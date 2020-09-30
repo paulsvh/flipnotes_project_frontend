@@ -4,15 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
    getCards()
    const createCardForm = document.querySelector("#create-card-form")
    createCardForm.addEventListener("submit", (e) => createFormHandler(e))
+   
 })
+
+
 
 function getCards(){
     fetch(cardsEndPoint)
     .then(resp => resp.json())
     .then(cards => {
         cards.data.forEach(card => {
+            const thisCard = document.querySelector('#card-container')
             const newCard = new Card(card, card.attributes)
-            document.querySelector('#card-container').innerHTML += newCard.renderCard()
+            thisCard.innerHTML += newCard.renderCard();
+            newCard.addFlipButton()
         })
         
     })
