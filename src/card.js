@@ -19,22 +19,6 @@ class Card {
                 `;
     }
 
-    addFlipButton() {
-        const thisCard = document.getElementById(this.id)
-        const flipButton = thisCard.getElementsByClassName("flip-button")[0]
-        const thisQuestion = thisCard.querySelector('.card-q')
-        const thisAnswer = thisCard.querySelector('.card-a')
-            flipButton.addEventListener("click", function(){
-                if (thisAnswer.hidden === true){
-                    thisAnswer.hidden = false;
-                    thisQuestion.hidden = true;
-                }
-                else if (thisQuestion.hidden === true){
-                    thisQuestion.hidden = false
-                    thisAnswer.hidden = true
-                }
-        })
-    }
 }
 
 Card.all = [];
