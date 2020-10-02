@@ -1,9 +1,13 @@
 const cardsEndPoint = "http://127.0.0.1:3000/api/cards"
+const decksEndPoint = "http://127.0.0.1:3000/api/decks"
 
 document.addEventListener('DOMContentLoaded', () => {
-   getCards()
-   const createCardForm = document.querySelector("#create-card-form")
-   createCardForm.addEventListener("submit", (e) => createFormHandler(e))
+   const createCardForm = document.querySelector("#create-card-form");
+   createCardForm.addEventListener("submit", (e) => createCardFormHandler(e));
+   const createDeckForm = document.querySelector("#create-deck-form");
+   createDeckForm.addEventListener("submit", (e) => createDeckFormHandler(e));
+   getCards();
+   getDecks();
 })
 
 function getCards(){
@@ -16,6 +20,18 @@ function getCards(){
             thisCard.innerHTML += newCard.renderCard();
         })
         addFlipButton();
+    })
+}
+
+function getDecks(){
+    fetch(decksEndPoint)
+    .then(resp => resp.json())
+    .then(decks => {
+        decks.data.forEach(deck => {
+            const deckList = document.querySelector('#deck-list')
+            const newDeck = new Deck(deck, deck.attributes)
+            deckList.innerHTML += newDeck.renderDeck();
+        })
     })
 }
 
@@ -38,12 +54,31 @@ function addFlipButton() {
     })
 }
 
-function createFormHandler(e){
+function createCardFormHandler(e){
     e.preventDefault()
     const questionInput = document.querySelector('#input-question').value
     const answerInput = document.querySelector('#input-answer').value
     const deckId = parseInt(document.querySelector('#deck-list').value)
     postCard(questionInput, answerInput, deckId)
+}
+
+function createDeckFormHandler(e){
+    e.preventDefault()
+    const deckInput = document.querySelector('#input-deck').value
+    postDeck(deckInput)
+}
+
+function postDeck(name){
+    fetch(decksEndPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name})
+    })
+    .then(resp => resp.json())
+    .then(deck => {
+        const newDeck = new Deck(deck.data, deck.data.attributes)
+        document.querySelector('#deck-list').innerHTML += newDeck.renderDeck();
+    })
 }
 
 function postCard(question, answer, deck_id){

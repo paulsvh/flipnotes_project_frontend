@@ -12,22 +12,27 @@
 <body>
 
     <div id="form-container">
+        <form id="create-deck-form">
+            <h3>Need To Add A New Deck? Do So Here!</h3>
+            <input id='input-deck' type="text" name="deck" value="" placeholder="Add new deck or select from below" class="input-text" size="28">
+            <input id="create-button" type="submit" name="submit" value="Add This New Deck" class="submit">
+        </form>
+        <br><br>
         <form id="create-card-form">
             <h3>Create A New Card!</h3>
-            <input id='input-question' type="text" name="question" value="" placeholder="Enter the question to go on your card" class="input-text">
+            <input id='input-question' type="text" name="question" value="" placeholder="Question" class="input-text">
             <br><br>
-            <input id='input-answer' type="text" name="answer" value="" placeholder="Enter the answer to go on the back of your card" class="input-text">
-            <br><br>
-
+            <input id='input-answer' type="text" name="answer" value="" placeholder="Answer" class="input-text">
+            <h5>Select a deck from the drop-down, or use the form up top to add a new one!</h5>
             <select id="deck-list" name="decks">
-                <option value="1">Javascript</option>
-                <option value="2">Ruby</option>
             </select>
             <br><br>
 
             <input id="create-button" type="submit" name="submit" value="Create A New Card" class="submit">
         </form>
+        <br><br>
     </div>
+    
     <br><br><br>
     <div id="card-container">
 

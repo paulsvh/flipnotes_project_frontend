@@ -11,6 +11,7 @@ class Card {
     renderCard() {
         return `
             <div class="single-card" id=${this.id}>
+            <h5 class="cards-deck">${this.deck.name}</h5>
             <h3 class="card-q">${this.question}</h3>
             <h3 class="card-a" hidden>${this.answer}</h3>
             <button class="flip-button" id=${this.id} type="button">FLIP</button>
