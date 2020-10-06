@@ -8,7 +8,9 @@ class Card {
         Card.all.push(this)
     }
 
-    
+    static findById(id) {
+        return Card.all.find(card => card.id === id);
+      }
 
     renderCard() {
         return `
@@ -22,6 +24,17 @@ class Card {
             </div>
             <br><br>
                 `;
+    }
+
+    renderCardEditForm(){
+        return `
+        <form data-id=${this.id}>
+        <h3>Update This Card!</h3>
+        <input type="text" value="${this.question}" placeholder="${this.question}>
+        <input type="text" value="${this.answer}" placeholder="${this.question}>
+        <button type="submit">Save This Update</button>
+        </form>
+        `
     }
 
 }

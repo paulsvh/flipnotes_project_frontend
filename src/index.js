@@ -54,16 +54,14 @@ function addCardButtons() {
                 thisAnswer.hidden = true
             }
         })
-        editButton.addEventListener("click", function(e){
-            e.preventDefault()
-            console.log(e.target);
-            console.log(e.target.dataset)
+        editButton.addEventListener("click", e => {
+            //const id = parseInt(e.target.id);
+            //const card = Card.findById(id);
+            //thisCard.innerHTML += card.renderCardEditForm();
         })
-        deleteButton.addEventListener("click", function(e){
-            e.preventDefault()
-            console.log(e.target);
-            console.log(e.target.dataset)
-        })
+        //deleteButton.addEventListener("click", function(e){
+            //????
+        //})
     })
 }
 
