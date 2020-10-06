@@ -19,7 +19,7 @@ function getCards(){
             const newCard = new Card(card, card.attributes)
             thisCard.innerHTML += newCard.renderCard();
         })
-        addFlipButton();
+        addCardButtons();
     })
 }
 
@@ -30,17 +30,20 @@ function getDecks(){
         decks.data.forEach(deck => {
             const deckList = document.querySelector('#deck-list')
             const newDeck = new Deck(deck, deck.attributes)
+            deckList.innerHTML = "";
             deckList.innerHTML += newDeck.renderDeck();
         })
     })
 }
 
-function addFlipButton() {
+function addCardButtons() {
     const allCards = document.querySelectorAll('.single-card')
     allCards.forEach(thisCard => {
     const flipButton = thisCard.getElementsByClassName("flip-button")[0]
     const thisQuestion = thisCard.querySelector('.card-q')
     const thisAnswer = thisCard.querySelector('.card-a')
+    const editButton = thisCard.getElementsByClassName("edit-button")[0]
+    const deleteButton = thisCard.getElementsByClassName("remove-button")[0]
         flipButton.addEventListener("click", function(){
             if (thisAnswer.hidden === true){
                 thisAnswer.hidden = false;
@@ -50,6 +53,16 @@ function addFlipButton() {
                 thisQuestion.hidden = false
                 thisAnswer.hidden = true
             }
+        })
+        editButton.addEventListener("click", function(e){
+            e.preventDefault()
+            console.log(e.target);
+            console.log(e.target.dataset)
+        })
+        deleteButton.addEventListener("click", function(e){
+            e.preventDefault()
+            console.log(e.target);
+            console.log(e.target.dataset)
         })
     })
 }
@@ -92,6 +105,6 @@ function postCard(question, answer, deck_id){
     .then(card => {
         const newCard = new Card(card.data, card.data.attributes)
         document.querySelector('#card-container').innerHTML += newCard.renderCard()
-        addFlipButton();
+        addCardButtons();
     })
 }

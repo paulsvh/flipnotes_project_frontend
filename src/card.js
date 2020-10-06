@@ -8,6 +8,8 @@ class Card {
         Card.all.push(this)
     }
 
+    
+
     renderCard() {
         return `
             <div class="single-card" id=${this.id}>
@@ -15,6 +17,8 @@ class Card {
             <h3 class="card-q">${this.question}</h3>
             <h3 class="card-a" hidden>${this.answer}</h3>
             <button class="flip-button" id=${this.id} type="button">FLIP</button>
+            <button class="edit-button" id=${this.id} type="button">EDIT</button>
+            <button class="remove-button" id=${this.id} type="button">REMOVE</button>
             </div>
             <br><br>
                 `;
@@ -22,4 +26,5 @@ class Card {
 
 }
 
-Card.all = [];
+    Card.all = [];
+
