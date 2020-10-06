@@ -54,14 +54,16 @@ function addCardButtons() {
                 thisAnswer.hidden = true
             }
         })
+        /*
         editButton.addEventListener("click", e => {
-            //const id = parseInt(e.target.id);
-            //const card = Card.findById(id);
-            //thisCard.innerHTML += card.renderCardEditForm();
+            const id = parseInt(e.target.id);
+            const card = Card.findById(id);
+            thisCard.innerHTML += card.renderCardEditForm();
         })
-        //deleteButton.addEventListener("click", function(e){
-            //????
-        //})
+        deleteButton.addEventListener("click", function(e){
+            
+        })
+        */
     })
 }
 
