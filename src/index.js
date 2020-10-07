@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
    createCardForm.addEventListener("submit", (e) => createCardFormHandler(e));
    const createDeckForm = document.querySelector("#create-deck-form");
    createDeckForm.addEventListener("submit", (e) => createDeckFormHandler(e));
-   getCards();
    getDecks();
+   getCards();
 })
 
 function getCards(){
@@ -23,6 +23,19 @@ function getCards(){
     })
 }
 
+function addDeckButtons(){
+    const deckButtons = document.querySelectorAll('#new-deck-button')
+    deckButtons.forEach(thisDeckButton => {
+        thisDeckButton.addEventListener("click", function(){
+            const cards = getCards()
+            cards.filter(card => card.deck === thisDeckButton.innerText)
+            debugger
+            console.log("I've been clicked")
+        })
+    })
+
+}
+
 function getDecks(){
     fetch(decksEndPoint)
     .then(resp => resp.json())
@@ -30,9 +43,11 @@ function getDecks(){
         decks.data.forEach(deck => {
             const deckList = document.querySelector('#deck-list')
             const newDeck = new Deck(deck, deck.attributes)
-            deckList.innerHTML = "";
             deckList.innerHTML += newDeck.renderDeck();
+            newDeck.renderDeckButton();
+            
         })
+        addDeckButtons()
     })
 }
 
@@ -91,6 +106,8 @@ function postDeck(name){
     .then(deck => {
         const newDeck = new Deck(deck.data, deck.data.attributes)
         document.querySelector('#deck-list').innerHTML += newDeck.renderDeck();
+        newDeck.renderDeckButton();
+        addDeckButtons();
     })
 }
 
@@ -108,3 +125,4 @@ function postCard(question, answer, deck_id){
         addCardButtons();
     })
 }
+

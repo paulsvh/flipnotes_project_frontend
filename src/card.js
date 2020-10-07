@@ -1,11 +1,11 @@
 class Card {
-
+    static all_cards = []
     constructor(card, cardAttributes){
         this.id = card.id
         this.question = cardAttributes.question
         this.answer = cardAttributes.answer
         this.deck = cardAttributes.deck
-        Card.all.push(this)
+        Card.all_cards.push(this)
     }
 
     static findById(id) {
@@ -39,5 +39,4 @@ class Card {
 
 }
 
-    Card.all = [];
 
