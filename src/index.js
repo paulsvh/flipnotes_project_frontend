@@ -7,31 +7,44 @@ document.addEventListener('DOMContentLoaded', () => {
    const createDeckForm = document.querySelector("#create-deck-form");
    createDeckForm.addEventListener("submit", (e) => createDeckFormHandler(e));
    getDecks();
-   getCards();
 })
 
+/*
 function getCards(){
     fetch(cardsEndPoint)
     .then(resp => resp.json())
     .then(cards => {
         cards.data.forEach(card => {
-            let newCard = new Card(card, card.attributes)
+            let newCard = new Card(card)
+            newCard.renderCard();
+        })
+    })
+}
+*/
+
+function renderCards(e){
+    fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`)
+    .then(resp => resp.json())
+    .then(deck => {
+        deck.data.attributes.cards.forEach(card => {
+            let newCard = new Card(card)
             newCard.renderCard();
         })
     })
 }
 
-function addDeckButtons(){
-    const deckButtons = document.querySelectorAll('#new-deck-button')
-    deckButtons.forEach(thisDeckButton => {
-        thisDeckButton.addEventListener("click", function(){
-            const cards = getCards()
-            cards.filter(card => card.deck === thisDeckButton.innerText)
-            debugger
-            console.log("I've been clicked")
-        })
+function postCard(question, answer, deck_id){
+    const bodyData = {question, answer, deck_id}
+    fetch(cardsEndPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
     })
-
+    .then(resp => resp.json())
+    .then(card => {
+        let newCard = new Card(card.data)
+        newCard.renderCard()
+    })
 }
 
 function getDecks(){
@@ -39,16 +52,24 @@ function getDecks(){
     .then(resp => resp.json())
     .then(decks => {
         decks.data.forEach(deck => {
-            const deckList = document.querySelector('#deck-list')
-            const newDeck = new Deck(deck, deck.attributes)
-            deckList.innerHTML += newDeck.renderDeck();
-            newDeck.renderDeckButton();
-            
+            const newDeck = new Deck(deck)
+            newDeck.renderDeck();
         })
-        addDeckButtons()
     })
 }
 
+function postDeck(name){
+    fetch(decksEndPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name})
+    })
+    .then(resp => resp.json())
+    .then(deck => {
+        const newDeck = new Deck(deck.data)
+        newDeck.renderDeck();
+    })
+}
 
 function createCardFormHandler(e){
     e.preventDefault()
@@ -64,32 +85,7 @@ function createDeckFormHandler(e){
     postDeck(deckInput)
 }
 
-function postDeck(name){
-    fetch(decksEndPoint, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name})
-    })
-    .then(resp => resp.json())
-    .then(deck => {
-        const newDeck = new Deck(deck.data, deck.data.attributes)
-        document.querySelector('#deck-list').innerHTML += newDeck.renderDeck();
-        newDeck.renderDeckButton();
-        addDeckButtons();
-    })
-}
 
-function postCard(question, answer, deck_id){
-    const bodyData = {question, answer, deck_id}
-    fetch(cardsEndPoint, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(bodyData)
-    })
-    .then(resp => resp.json())
-    .then(card => {
-        let newCard = new Card(card.data, card.data.attributes)
-        newCard.renderCard()
-    })
-}
+
+
 

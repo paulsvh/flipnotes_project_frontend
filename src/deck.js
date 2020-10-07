@@ -1,13 +1,27 @@
 class Deck {
-    static all_decks = [];
-    constructor(deck, deckAttributes){
+    constructor(deck){
         this.id = deck.id
-        this.name = deckAttributes.name
-        Deck.all_decks.push(this)
+        this.name = deck.attributes.name
+        this.cards = deck.attributes.cards
+        Deck.all.push(this)
     }
 
     renderDeck() {
-        return `<option value="${this.id}">${this.name}</option>`;
+        const deckList = document.querySelector('#deck-list')
+        const deckListMarkup = `${this.name}`
+        let elm = document.createElement('option')
+        elm.innerHTML = deckListMarkup
+        elm.setAttribute("id", this.id)
+        elm.setAttribute("value", this.id)
+        deckList.appendChild(elm)
+
+        const deckSelector = document.querySelector('#deck-selector')
+        let deckButton = document.createElement('button')
+        deckButton.setAttribute("id", this.id)
+        deckButton.innerHTML = `${this.name}`
+        deckButton.addEventListener('click', (e) => renderCards(e));
+        deckSelector.appendChild(deckButton);
+
     }
 
     renderDeckButton(){ 
@@ -18,3 +32,5 @@ class Deck {
             deckDiv.appendChild(newButton);
     }
 }
+
+Deck.all = [];

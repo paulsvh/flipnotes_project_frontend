@@ -1,10 +1,12 @@
 class Card {
-    constructor(card, cardAttributes){
+    constructor(card){
         this.id = card.id
-        this.question = cardAttributes.question
-        this.answer = cardAttributes.answer
-        this.deck = cardAttributes.deck
+        this.question = card.question
+        this.answer = card.answer
+        this.deck = card.deck_id
         Card.all.push(this)
+            
+        
     }
 
     renderCard() {
