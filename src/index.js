@@ -15,11 +15,9 @@ function getCards(){
     .then(resp => resp.json())
     .then(cards => {
         cards.data.forEach(card => {
-            const thisCard = document.querySelector('#card-container')
-            const newCard = new Card(card, card.attributes)
-            thisCard.innerHTML += newCard.renderCard();
+            let newCard = new Card(card, card.attributes)
+            newCard.renderCard();
         })
-        addCardButtons();
     })
 }
 
@@ -51,36 +49,6 @@ function getDecks(){
     })
 }
 
-function addCardButtons() {
-    const allCards = document.querySelectorAll('.single-card')
-    allCards.forEach(thisCard => {
-    const flipButton = thisCard.getElementsByClassName("flip-button")[0]
-    const thisQuestion = thisCard.querySelector('.card-q')
-    const thisAnswer = thisCard.querySelector('.card-a')
-    const editButton = thisCard.getElementsByClassName("edit-button")[0]
-    const deleteButton = thisCard.getElementsByClassName("remove-button")[0]
-        flipButton.addEventListener("click", function(){
-            if (thisAnswer.hidden === true){
-                thisAnswer.hidden = false;
-                thisQuestion.hidden = true;
-            }
-            else if (thisQuestion.hidden === true){
-                thisQuestion.hidden = false
-                thisAnswer.hidden = true
-            }
-        })
-        /*
-        editButton.addEventListener("click", e => {
-            const id = parseInt(e.target.id);
-            const card = Card.findById(id);
-            thisCard.innerHTML += card.renderCardEditForm();
-        })
-        deleteButton.addEventListener("click", function(e){
-            
-        })
-        */
-    })
-}
 
 function createCardFormHandler(e){
     e.preventDefault()
@@ -120,9 +88,8 @@ function postCard(question, answer, deck_id){
     })
     .then(resp => resp.json())
     .then(card => {
-        const newCard = new Card(card.data, card.data.attributes)
-        document.querySelector('#card-container').innerHTML += newCard.renderCard()
-        addCardButtons();
+        let newCard = new Card(card.data, card.data.attributes)
+        newCard.renderCard()
     })
 }
 
