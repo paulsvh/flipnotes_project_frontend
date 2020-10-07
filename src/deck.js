@@ -26,7 +26,7 @@ class Deck {
 
     renderDeckButton(){ 
             const deckDiv = document.getElementById("deck-selector")
-            const newButton = document.createElement("button")
+            let newButton = document.createElement("button")
             newButton.id = "new-deck-button"
             newButton.innerText = `${this.name}`
             deckDiv.appendChild(newButton);
