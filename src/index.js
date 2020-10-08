@@ -9,19 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
    getDecks();
 })
 
-/*
-function getCards(){
-    fetch(cardsEndPoint)
-    .then(resp => resp.json())
-    .then(cards => {
-        cards.data.forEach(card => {
-            let newCard = new Card(card)
-            newCard.renderCard();
-        })
-    })
-}
-*/
-
 function renderCards(e){
     const cards = document.querySelector('#card-container')
     cards.innerHTML = `${e.target.innerText}`
