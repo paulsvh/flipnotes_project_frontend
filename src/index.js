@@ -14,8 +14,8 @@ function renderCards(e){
     cards.innerHTML = `CURRENT DECK: ${e.target.innerText} <br/><br/>`
     let removeDeck = document.createElement("button")
     removeDeck.innerHTML = `Delete This Deck`
-    removeDeck.addEventListener("click", (e) => deleteDeck(e))
     removeDeck.setAttribute("id", e.target.id)
+    removeDeck.addEventListener("click", (e) => deleteDeck(e))
     cards.appendChild(removeDeck)
     fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`)
     .then(resp => resp.json())
@@ -53,7 +53,6 @@ function deleteCard(e){
         }
     })
     .then(location.reload())
-    .catch(error => {alert(error.message)})
 }
 
 function getDecks(){
@@ -91,7 +90,6 @@ function deleteDeck(e){
         }
     })
     .then(location.reload())
-    .catch(error => {alert(error.message)})
 }
 
 function createCardFormHandler(e){
