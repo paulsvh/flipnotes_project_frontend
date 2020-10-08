@@ -28,9 +28,6 @@ class Card {
         let removeCard = document.createElement('button')
         removeCard.setAttribute("id", this.id)
         removeCard.innerHTML = "Remove This Card"
-        let edit = document.createElement('button')
-        edit.setAttribute("id", this.id)
-        edit.innerHTML = "Edit This Card"
         const thisQuestion = elm.querySelector('.card-q')
         const thisAnswer = elm.querySelector('.card-a')
         flip.addEventListener("click", function(){
@@ -43,8 +40,8 @@ class Card {
                 thisAnswer.hidden = true
             }
         })
+        removeCard.addEventListener("click", (e) => deleteCard(e))
         cards.appendChild(flip)
-        cards.appendChild(edit)
         cards.appendChild(removeCard)
     }
 }

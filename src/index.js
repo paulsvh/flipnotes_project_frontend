@@ -11,7 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function renderCards(e){
     const cards = document.querySelector('#card-container')
-    cards.innerHTML = `${e.target.innerText}`
+    cards.innerHTML = `CURRENT DECK: ${e.target.innerText} <br/><br/>`
+    let removeDeck = document.createElement("button")
+    removeDeck.innerHTML = `Delete This Deck`
+    removeDeck.addEventListener("click", (e) => deleteDeck(e))
+    removeDeck.setAttribute("id", e.target.id)
+    cards.appendChild(removeDeck)
     fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`)
     .then(resp => resp.json())
     .then(deck => {
@@ -20,6 +25,7 @@ function renderCards(e){
             newCard.renderCard();
         })
     })
+    .catch(error => {alert(error.message)})
 }
 
 function postCard(question, answer, deck_id){
@@ -32,8 +38,22 @@ function postCard(question, answer, deck_id){
     .then(resp => resp.json())
     .then(card => {
         let newCard = new Card(card.data)
+        location.reload()
         newCard.renderCard()
     })
+    .catch(error => {alert(error.message)})
+}
+
+function deleteCard(e){
+    fetch(`http://127.0.0.1:3000/api/cards/${e.target.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    })
+    .then(location.reload())
+    .catch(error => {alert(error.message)})
 }
 
 function getDecks(){
@@ -45,6 +65,7 @@ function getDecks(){
             newDeck.renderDeck();
         })
     })
+    .catch(error => {alert(error.message)})
 }
 
 function postDeck(name){
@@ -58,6 +79,19 @@ function postDeck(name){
         const newDeck = new Deck(deck.data)
         newDeck.renderDeck();
     })
+    .catch(error => {alert(error.message)})
+}
+
+function deleteDeck(e){
+    fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    })
+    .then(location.reload())
+    .catch(error => {alert(error.message)})
 }
 
 function createCardFormHandler(e){
