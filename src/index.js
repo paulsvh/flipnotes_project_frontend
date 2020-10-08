@@ -24,7 +24,7 @@ function getCards(){
 
 function renderCards(e){
     const cards = document.querySelector('#card-container')
-    cards.innerHTML = ""
+    cards.innerHTML = `${e.target.innerText}`
     fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`)
     .then(resp => resp.json())
     .then(deck => {
