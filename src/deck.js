@@ -23,14 +23,6 @@ class Deck {
         deckSelector.appendChild(deckButton);
 
     }
-
-    renderDeckButton(){ 
-            const deckDiv = document.getElementById("deck-selector")
-            let newButton = document.createElement("button")
-            newButton.id = "new-deck-button"
-            newButton.innerText = `${this.name}`
-            deckDiv.appendChild(newButton);
-    }
 }
 
 Deck.all = [];

@@ -38,8 +38,8 @@ function postCard(question, answer, deck_id){
     .then(resp => resp.json())
     .then(card => {
         let newCard = new Card(card.data)
-        location.reload()
         newCard.renderCard()
+        location.reload()
     })
     .catch(error => {alert(error.message)})
 }
@@ -52,7 +52,14 @@ function deleteCard(e){
             "Accept": "application/json"
         }
     })
-    .then(location.reload())
+    .then(function(resp){
+        if (resp.status == 204)
+            location.reload();
+        else
+            throw new Error(resp.message)
+            console.log(resp.status)
+    })
+    .catch(error => {alert(error.message)})
 }
 
 function getDecks(){
@@ -81,15 +88,22 @@ function postDeck(name){
     .catch(error => {alert(error.message)})
 }
 
-function deleteDeck(e){
-    fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`, {
+function deleteDeck(e) {
+    fetch(`http://localhost:3000/api/decks/${e.target.id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
     })
-    .then(location.reload())
+    .then(function(resp){
+        if (resp.status == 204)
+            location.reload();
+        else
+            throw new Error(resp.message)
+            console.log(resp.status)
+    })
+    .catch(error => {alert(error.message)})
 }
 
 function createCardFormHandler(e){
