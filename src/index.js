@@ -1,5 +1,5 @@
-const cardsEndPoint = "http://127.0.0.1:3000/api/cards"
-const decksEndPoint = "http://127.0.0.1:3000/api/decks"
+const cardsEndPoint = "https://aqueous-ocean-75634.herokuapp.com/api/cards"
+const decksEndPoint = "https://aqueous-ocean-75634.herokuapp.com/api/decks"
 
 document.addEventListener('DOMContentLoaded', () => {
    const createCardForm = document.querySelector("#create-card-form");
@@ -17,7 +17,7 @@ function renderCards(e){
     removeDeck.setAttribute("id", e.target.id)
     removeDeck.addEventListener("click", (e) => deleteDeck(e))
     cards.appendChild(removeDeck)
-    fetch(`http://127.0.0.1:3000/api/decks/${e.target.id}`)
+    fetch(`https://aqueous-ocean-75634.herokuapp.com/api/decks/${e.target.id}`)
     .then(resp => resp.json())
     .then(deck => {
         deck.data.attributes.cards.forEach(card => {
@@ -45,7 +45,7 @@ function postCard(question, answer, deck_id){
 }
 
 function deleteCard(e){
-    fetch(`http://127.0.0.1:3000/api/cards/${e.target.id}`, {
+    fetch(`https://aqueous-ocean-75634.herokuapp.com/api/cards/${e.target.id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function postDeck(name){
 }
 
 function deleteDeck(e) {
-    fetch(`http://localhost:3000/api/decks/${e.target.id}`, {
+    fetch(`https://aqueous-ocean-75634.herokuapp.com/api/decks/${e.target.id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
