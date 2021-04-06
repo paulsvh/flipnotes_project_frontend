@@ -2,7 +2,7 @@
 
 ### Flipnotes is an online flash-card creator! Make your own study cards, assign them to specific decks, and use them to help you study any time!
 
-[Link to Back-End Repo](https://github.com/paulsvh/flipnotes_project_cakend "FlipNotes Back-End")
+[Link to Back-End Repo](https://github.com/paulsvh/flipnotes_project_backend "FlipNotes Back-End")
 
 ## INSTALL
 
