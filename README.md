@@ -4,6 +4,10 @@
 
 [Link to Back-End Repo](https://github.com/paulsvh/flipnotes_project_backend "FlipNotes Back-End")
 
+## RUN ONLINE
+
+* Visit [FLIPNOTES](https://paulsvh.github.io/flipnotes_project_frontend "Flipnotes") to test it out! Create new decks, cards, and flip through to explore!
+
 ## INSTALL
 
 * Fork and clone both the back-end and front-end repositories
