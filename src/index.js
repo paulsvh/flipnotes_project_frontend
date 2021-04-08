@@ -25,7 +25,7 @@ function renderCards(e){
             newCard.renderCard();
         })
     })
-    .catch(error => {alert(error.message)})
+    .catch(error => {console.log(error.message)})
 }
 
 function postCard(question, answer, deck_id){
@@ -41,7 +41,7 @@ function postCard(question, answer, deck_id){
         newCard.renderCard()
         location.reload()
     })
-    .catch(error => {alert(error.message)})
+    .catch(error => {console.log(error.message); alert(error.message)})
 }
 
 function deleteCard(e){
@@ -59,7 +59,7 @@ function deleteCard(e){
             throw new Error(resp.message)
             console.log(resp.status)
     })
-    .catch(error => {alert(error.message)})
+    .catch(error => {console.log(error.message); alert(error.message)})
 }
 
 function getDecks(){
@@ -71,7 +71,7 @@ function getDecks(){
             newDeck.renderDeck();
         })
     })
-    .catch(error => {alert(error.message)})
+    .catch(error => {console.log(error.message); alert(error.message)})
 }
 
 function postDeck(name){
@@ -85,7 +85,7 @@ function postDeck(name){
         const newDeck = new Deck(deck.data)
         newDeck.renderDeck();
     })
-    .catch(error => {alert(error.message)})
+    .catch(error => {console.log(error.message); alert(error.message)})
 }
 
 function deleteDeck(e) {
@@ -103,7 +103,7 @@ function deleteDeck(e) {
             throw new Error(resp.message)
             console.log(resp.status)
     })
-    .catch(error => {alert(error.message)})
+    .catch(error => {console.log(error.message); alert(error.message)})
 }
 
 function createCardFormHandler(e){
