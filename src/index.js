@@ -42,7 +42,7 @@ function postCard(question, answer, deck_id){
         newCard.renderCard()
         location.reload()
     })
-    .catch(error => {console.log("error.message"); alert("something went wrong with the input!")})
+    .catch(error => {console.log(error.message); alert("something went wrong with the input!")})
     //This error pertains to new cards not being created correctly
     //Will need to narrow down errors based on which property (question, answer, or deck_id) failed
     //Will need to describe errors to user
