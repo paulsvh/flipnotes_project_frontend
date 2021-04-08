@@ -26,6 +26,7 @@ function renderCards(e){
         })
     })
     .catch(error => {console.log(error.message)})
+    //This error shouldn't be an issue with user input
 }
 
 function postCard(question, answer, deck_id){
@@ -41,7 +42,11 @@ function postCard(question, answer, deck_id){
         newCard.renderCard()
         location.reload()
     })
-    .catch(error => {console.log(error.message); alert(error.message)})
+    .catch(error => {console.log("error.message"); alert(error.message)})
+    //This error pertains to new cards not being created correctly
+    //Will need to narrow down errors based on which property (question, answer, or deck_id) failed
+    //Will need to describe errors to user
+
 }
 
 function deleteCard(e){
@@ -59,7 +64,9 @@ function deleteCard(e){
             throw new Error(resp.message)
             console.log(resp.status)
     })
-    .catch(error => {console.log(error.message); alert(error.message)})
+    .catch(error => {console.log(error.message)})
+    //This error should't be an issue with user input
+
 }
 
 function getDecks(){
@@ -71,7 +78,8 @@ function getDecks(){
             newDeck.renderDeck();
         })
     })
-    .catch(error => {console.log(error.message); alert(error.message)})
+    .catch(error => {console.log(error.message)})
+    //This error should't be an issue with user input
 }
 
 function postDeck(name){
@@ -86,6 +94,9 @@ function postDeck(name){
         newDeck.renderDeck();
     })
     .catch(error => {console.log(error.message); alert(error.message)})
+    //This error pertains to new decks not being created correctly
+    //Will need to describe error to user
+
 }
 
 function deleteDeck(e) {
@@ -103,7 +114,8 @@ function deleteDeck(e) {
             throw new Error(resp.message)
             console.log(resp.status)
     })
-    .catch(error => {console.log(error.message); alert(error.message)})
+    .catch(error => {console.log(error.message)})
+    //This error should't be an issue with user input
 }
 
 function createCardFormHandler(e){
