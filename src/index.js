@@ -31,6 +31,8 @@ function renderCards(e){
 
 function postCard(question, answer, deck_id){
     const bodyData = {question, answer, deck_id}
+    //consider a switch case or if statement before the fetch that will check to see if the input has data or not
+    //can return error message here without even kicking off fetch if input has no data
     fetch(cardsEndPoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -83,6 +85,8 @@ function getDecks(){
 }
 
 function postDeck(name){
+    //consider if statement before the fetch that will check to see if the input has data or not
+    //can return error message here without even kicking off fetch if input has no data
     fetch(decksEndPoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
